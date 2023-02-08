@@ -4,11 +4,10 @@ import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class UserService {
+  private prisma = new PrismaClient();
   async create(createUserDto: CreateUserDto) {
-    const prisma = new PrismaClient();
-
     try {
-      await prisma.user.create({
+      await this.prisma.user.create({
         data: {
           username: createUserDto.username,
           isAdmin: createUserDto.isAdmin,
@@ -21,34 +20,33 @@ export class UserService {
   }
 
   async findAll() {
-    const prisma = new PrismaClient();
-    return prisma.user.findMany();
+    const users = this.prisma.user.findMany();
+    await this.prisma.$disconnect();
+    return users;
   }
 
   async findOne(id: string) {
-    const prisma = new PrismaClient();
     try {
-      const user = prisma.user.findUnique({
+      const user = this.prisma.user.findUnique({
         where: { id: id },
       });
-      await prisma.$disconnect();
+      await this.prisma.$disconnect();
       return user;
     } catch (error) {
-      await prisma.$disconnect();
+      await this.prisma.$disconnect();
       return error;
     }
   }
 
   async remove(id: string) {
-    const prisma = new PrismaClient();
     try {
-      const user = prisma.user.delete({
+      const user = this.prisma.user.delete({
         where: { id: id },
       });
-      await prisma.$disconnect();
+      await this.prisma.$disconnect();
       return user;
     } catch (error) {
-      await prisma.$disconnect();
+      await this.prisma.$disconnect();
       return error;
     }
   }
