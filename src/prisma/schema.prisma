@@ -11,11 +11,26 @@ model store {
   id        String   @id @default(uuid())
   name      String   @unique(map: "Store_name_key") @db.VarChar(30)
   createdAt DateTime @default(now())
+  payment   payment[]
 }
 
 model user {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  username  String   @unique(map: "User_username_key") @db.VarChar(30)
-  isAdmin   Boolean  @default(false)
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  username  String    @unique(map: "User_username_key") @db.VarChar(30)
+  isAdmin   Boolean   @default(false)
+  payment   payment[]
+
+}
+
+model payment {
+  id         String   @id @default(uuid())
+  amount     Decimal  @db.Decimal()
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @default(now())
+  customer   user     @relation(fields: [customerid], references: [id])
+  customerid String
+  store      store    @relation(fields: [storeid], references: [id])
+  storeid    String
+  url        String   @default("www.google.com.br") // esta como default porem tem que ser um campo obrigatório para mudança
 }
