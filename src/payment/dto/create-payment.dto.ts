@@ -1,10 +1,6 @@
 export class CreatePaymentDto {
-  paymentData: PaymentData;
-  userid: string;
+  costumerid: string;
   storeid: string;
-}
-
-export class PaymentData {
   amount: number;
   url: string;
 }

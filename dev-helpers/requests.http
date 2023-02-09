@@ -40,7 +40,7 @@ Content-Type: application/json
 
 
 # curl --location --request POST 'http://localhost:3003/payment'
-#--header 'Content-Type: application/json'
+#--header 'Content-Type: application/json'"
 #--data-raw '{
 #    "name":"Lojas Americanas"
 #}'
@@ -48,7 +48,9 @@ POST http://localhost:3003/payment
 Content-Type: application/json
 
 {
-  "name": "Havan"
+  "storeid": "e8f1a776-addf-4913-b441-ace6474156b9",
+  "costumerid": "b2382059-3def-4bdc-a823-6e3ede7f105f",
+  "amount": 95.20
 }
 
 ###

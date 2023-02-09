@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
+
 
 @Controller('payment')
 export class PaymentController {
@@ -22,7 +24,10 @@ export class PaymentController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() query: any) {
+    if (Object.keys(query).includes('storeid')) {
+      return this.paymentService.findByStore(query.storeid);
+    }
     return this.paymentService.findAll();
   }
 

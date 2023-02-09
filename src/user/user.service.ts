@@ -33,8 +33,9 @@ export class UserService {
       await this.prisma.$disconnect();
       return user;
     } catch (error) {
+      console.log(error);
       await this.prisma.$disconnect();
-      return error;
+      return null;
     }
   }
 
