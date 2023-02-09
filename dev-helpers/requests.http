@@ -1,0 +1,65 @@
+
+# curl --location --request POST 'http://localhost:3003/user'
+POST http://localhost:3003/user
+
+###
+
+# curl --location --request GET 'http://localhost:3003/user'
+GET http://localhost:3003/user
+
+###
+
+# curl --location --request GET 'http://localhost:3003/user/b2382059-3def-4bdc-a823-6e3ede7f105f'
+GET http://localhost:3003/user/b2382059-3def-4bdc-a823-6e3ede7f105f
+
+###
+
+# curl --location --request GET 'http://localhost:3003/store'
+GET http://localhost:3003/store
+
+###
+
+# curl --location --request GET 'http://localhost:3003/store/48289d7b-8744-4656-b971-4a0abebc2d12'
+GET http://localhost:3003/store/48289d7b-8744-4656-b971-4a0abebc2d12
+
+###
+
+# curl --location --request POST 'http://localhost:3003/store'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "name":"Lojas Americanas"
+#}'
+POST http://localhost:3003/store
+Content-Type: application/json
+
+{
+  "name": "Havan"
+}
+
+###
+
+
+# curl --location --request POST 'http://localhost:3003/payment'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "name":"Lojas Americanas"
+#}'
+POST http://localhost:3003/payment
+Content-Type: application/json
+
+{
+  "name": "Havan"
+}
+
+###
+
+# curl --location --request GET 'http://localhost:3003/store/48289d7b-8744-4656-b971-4a0abebc2d12'
+GET http://localhost:3003/payment/48289d7b-8744-4656-b971-4a0abebc2d12
+
+###
+
+
+# curl --location --request GET 'http://localhost:3003/payment'
+GET http://localhost:3003/payment
+
+###
